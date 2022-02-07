@@ -63,8 +63,8 @@ const Login = () => {
                             <Button variant="text">New User? Please Register</Button>
                         </NavLink>
                     </form>
-                    <p>-------------------</p>
-                    <Button onClick={handleGoogleSignIn} variant="contained">Google Sign In</Button>
+                    {/* <p>-------------------</p>
+                    <Button onClick={handleGoogleSignIn} variant="contained">Google Sign In</Button> */}
                     {isLoading && <CircularProgress />}
                     {user?.email && <Alert severity="success">Login successfully!</Alert>}
                     {authError && <Alert severity="error">{authError}</Alert>}

@@ -5,6 +5,10 @@ const Contact = () => {
     return (
         <div>
             <Header></Header>
+            <div className="container">
+                <h4 className="text-primary">Email: touronbd@gmail.com</h4>
+
+            </div>
         </div>
     );
 };

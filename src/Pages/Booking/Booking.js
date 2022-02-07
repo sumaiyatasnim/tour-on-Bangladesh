@@ -11,7 +11,7 @@ const Booking = () => {
     const { name, price, description, img } = singleService;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/allProducts/${bookingId}`)
+        fetch(`https://rocky-waters-74855.herokuapp.com/allProducts/${bookingId}`)
             .then(res => res.json())
             .then(data => setSingleService(data))
     }, []);

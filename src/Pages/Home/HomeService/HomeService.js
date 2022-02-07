@@ -10,7 +10,7 @@ const HomeService = (props) => {
     const { _id, name, price, description, img } = props.service;
     return (
         <Grid item xs={12} sm={4} md={4} >
-            <Card sx={{ minWidth: 275 }}>
+            <Card sx={{ minWidth: 275, height: '100%' }}>
                 <CardMedia
                     component="img"
                     height="194"
@@ -24,7 +24,7 @@ const HomeService = (props) => {
                     </Typography>
 
                     <Typography variant="body2">
-                        {price}
+                        Price: ${price}
                     </Typography>
                 </CardContent>
                 <CardActions>

@@ -8,7 +8,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [authError, setAuthError] = useState('');
-
+    console.log(user)
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
     const registerUser = (email, password, name, navigate) => {
@@ -79,6 +79,7 @@ const useFirebase = () => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
+                console.log(user)
                 //user k j paisi set kore dilam
                 const uid = user.uid;
                 setUser(user)

@@ -5,14 +5,14 @@ const MyOrders = () => {
     const { user } = useAuth();
     const [myOrder, setMyOrder] = useState([]);
     // const [control, setControl] = useState(false);
-
+    console.log(user.email)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myOrder/${user.email}`)
+        fetch(`https://rocky-waters-74855.herokuapp.com/myOrder/${user?.email}`)
             .then((res) => res.json())
             .then((data) => {
                 setMyOrder(data);
-                // setLoading(true);
+
             });
     }, [user?.email]);
     console.log(myOrder);
@@ -20,14 +20,14 @@ const MyOrders = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure you want to delete');
         if (proceed) {
-            fetch(`http://localhost:5000/delteOrder/${id}`, {
+            fetch(`https://rocky-waters-74855.herokuapp.com/delteOrder/${id}`, {
                 method: "DELETE",
             })
                 .then((res) => res.json())
                 .then((data) => {
                     if (data.deletedCount > 0) {
                         alert('Deleted successfully')
-                        // setControl(!control);
+
                         const remainingUsers = myOrder.filter(order => order._id !== id);
                         setMyOrder(remainingUsers);
                     }
@@ -37,6 +37,7 @@ const MyOrders = () => {
     };
     return (
         <div className="container mt-5">
+            <h1>My Orders</h1>
             <div className="services">
                 <div className="row container">
                     {myOrder?.map((pd) => (
@@ -50,9 +51,9 @@ const MyOrders = () => {
                                 <h6>{pd?.email}</h6>
                                 <p>{pd?.address}</p>
 
-                                <h6>Product name: {pd?.pd?.name}</h6>
+                                {/* <h6>Product name: {pd?.pd?.name}</h6>
                                 <p>{pd?.pd?.description}</p>
-                                <h3 className="text-success"> Cost :{pd?.pd?.price}$</h3>
+                                <h3 className="text-success"> Cost :{pd?.pd?.price}$</h3> */}
 
                                 <button
                                     onClick={() => handleDelete(pd?._id)}

@@ -101,6 +101,7 @@ const Header = () => {
                         <Box className={menuItem}>
                             <Link className={navItem} to="/"><Button color="inherit">Home</Button></Link>
                             <Link className={navItem} to="/myOrder"><Button color="inherit">MyOrder</Button></Link>
+                            <Link className={navItem} to="/addServices"><Button color="inherit">Add Services</Button></Link>
                             <Link className={navItem} to="/contact"><Button color="inherit">Contact </Button></Link>
                         </Box>
                         {

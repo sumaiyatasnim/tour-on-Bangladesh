@@ -26,7 +26,7 @@
 //     //         ...bookingInfo,
 //     //     }
 //     //     // send data to server
-//     //     fetch('http://localhost:5000/bookings', {
+//     //     fetch('https://rocky-waters-74855.herokuapp.com/bookings', {
 //     //         method: 'POST',
 //     //         headers: {
 //     //             'content-type': '/booking/json'
@@ -44,7 +44,7 @@
 //         data.order = myOrder;
 //         data.email = user.email;
 //         console.log('my order', myOrder)
-//         fetch('http://localhost:5000/myOrders', {
+//         fetch('https://rocky-waters-74855.herokuapp.com/myOrders', {
 //             method: 'POST',
 //             headers: {
 //                 'content-type': 'application/json'
@@ -115,7 +115,7 @@ const BookingForm = () => {
     const { user } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     useEffect(() => {
-        fetch(`http://localhost:5000/allProducts/${productId}`)
+        fetch(`https://rocky-waters-74855.herokuapp.com/allProducts/${productId}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, []);
@@ -125,7 +125,7 @@ const BookingForm = () => {
         data.order = myOrder;
         data.email = user.email;
         console.log('my order', myOrder)
-        fetch('http://localhost:5000/myOrders', {
+        fetch('https://rocky-waters-74855.herokuapp.com/myOrders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -144,45 +144,48 @@ const BookingForm = () => {
             })
     }
     return (
-        <Container>
+        <>
             <Header></Header>
-            <Grid
-                sx={{ mt: 4 }}
-                container
-                spacing={4}
-                justifyContent="center"
-                style={{ minHeight: '100vh' }}
-            >
-                <Grid item xs={12} sm={12} md={6} >
-                    <img src={product.img} alt="place" style={{ maxWidth: '100%' }} />
+            <Container>
+
+                <Grid
+                    sx={{ mt: 4 }}
+                    container
+                    spacing={4}
+                    justifyContent="center"
+                    style={{ minHeight: '100vh' }}
+                >
+                    <Grid item xs={12} sm={12} md={6} >
+                        <img src={product.img} alt="place" style={{ maxWidth: '100%' }} />
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={6} >
+                        <Typography variant="h5" className="color-b">{product.name}</Typography>
+                        <Typography variant="h6" sx={{ fontWeight: 'bold', mt: 4 }}>About destination</Typography>
+                        <Typography paragraph>{product.description}</Typography>
+                        <Typography variant="h6" className="color-b">Price: {product.price}</Typography>
+
+                    </Grid>
                 </Grid>
-                <Grid item xs={12} sm={12} md={6} >
-                    <Typography variant="h5" className="color-b">{product.name}</Typography>
-                    <Typography variant="h6" sx={{ fontWeight: 'bold', mt: 4 }}>About destination</Typography>
-                    <Typography paragraph>{product.description}</Typography>
-                    <Typography variant="h6" className="color-b">Price: {product.price}</Typography>
+                <Box sx={{ mt: 4 }}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <Typography variant='h5' sx={{ fontWeight: 'bold', textAlign: 'center', color: "blue" }} >Please provide these informations</Typography>
+                        <TextField {...register("name")} label="name" variant="standard" value={user.displayName} style={{ width: '100%' }} />
+                        <br />
+                        <br />
+                        <TextField {...register("email")} label="email" variant="standard" value={user.email} style={{ width: '100%' }} />
+                        <br />
 
-                </Grid>
-            </Grid>
-            <Box>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <Typography paragraph sx={{ fontWeight: 'bold', textAlign: 'center' }} className="color-a">Please provide these informations</Typography>
-                    <TextField {...register("name")} label="name" variant="standard" value={user.displayName} style={{ width: '100%' }} />
-                    <br />
-                    <br />
-                    <TextField {...register("email")} label="email" variant="standard" value={user.email} style={{ width: '100%' }} />
-                    <br />
+                        <TextField {...register("phone")} label=" phone" required type="tel" variant="standard" style={{ width: '100%' }} />
+                        <br />
 
-                    <TextField {...register("phone")} label=" phone" required type="tel" variant="standard" style={{ width: '100%' }} />
-                    <br />
-
-                    <br />
-                    <TextField {...register("address")} label="address" required variant="standard" style={{ width: '100%' }} />
-                    <br /><br />
-                    <Button type="submit" variant='contained' sx={{ color: 'white' }}>Add package</Button>
-                </form>
-            </Box>
-        </Container>
+                        <br />
+                        <TextField {...register("address")} label="address" required variant="standard" style={{ width: '100%' }} />
+                        <br /><br />
+                        <Button type="submit" variant='contained' sx={{ color: 'white' }}>Add package</Button>
+                    </form>
+                </Box>
+            </Container>\
+        </>
     );
 };
 
